@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .timer {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: conic-gradient(#2196f3 360deg, #e0e0e0 0deg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .inner {
+            width: 80px;
+            height: 80px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="timer">
+        <div class="inner">
+            <span id="time">60</span>
+        </div>
+    </div>
+
+    <script>
+        let timeLeft = 60;
+        const timerEl = document.querySelector('.timer');
+        const timeEl = document.getElementById('time');
+
+        const timer = setInterval(() => {
+            timeLeft--;
+            const degrees = (timeLeft / 60) * 360;
+            timerEl.style.background = `conic-gradient(#2196f3 ${degrees}deg, #e0e0e0 0deg)`;
+            timeEl.textContent = timeLeft;
+            
+            if (timeLeft <= 0) clearInterval(timer);
+        }, 1000);
+    </script>
+</body>
+</html>
