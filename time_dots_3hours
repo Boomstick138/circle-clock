@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .circle {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 1px solid black;
+            display: inline-block;
+            margin: 10px;
+            position: relative;
+            text-align: center;
+            line-height: 100px;
+        }
+        .container {
+            text-align: center;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+        .notice {
+            background: #f0f0f0;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        #time19 { background: #FFB6C6; }
+        #time20 { background: #E6E6FA; }
+        #time21 { background: #ADD8E6; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="notice">Notiz: Start (if datetime not between 19:00-21:59)</div>
+        <div>
+            <div class="circle" id="time19">19:00</div>
+            <div class="circle" id="time20">20:00</div>
+            <div class="circle" id="time21">21:00</div>
+        </div>
+        <div class="notice" id="currentTime"></div>
+    </div>
+
+    <script>
+        function updateCircles() {
+            const now = new Date();
+            const hours = now.getHours();
+            const minutes = now.getMinutes();
+            const currentTime = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
+            
+            document.getElementById('currentTime').textContent = `Notiz: Aktuelle RealWorld Zeit: ${currentTime}`;
+            
+            const circles = {
+                time19: document.getElementById('time19'),
+                time20: document.getElementById('time20'),
+                time21: document.getElementById('time21')
+            };
+
+            // Reset all circles
+            if (hours >= 22 || hours < 18) {
+                Object.values(circles).forEach(circle => {
+                    circle.style.background = 'white';
+                    circle.style.color = '#999';
+                });
+                return;
+            }
+
+            // Fill circles based on current time
+            Object.entries(circles).forEach(([id, circle]) => {
+                const circleHour = parseInt(id.slice(4));
+                if (hours < circleHour) {
+                    circle.style.background = circle.id === 'time19' ? '#FFB6C6' : 
+                                            circle.id === 'time20' ? '#E6E6FA' : '#ADD8E6';
+                    circle.style.color = 'black';
+                } else if (hours === circleHour) {
+                    const gradient = `conic-gradient(white ${minutes / 60 * 360}deg, ${
+                        circle.id === 'time19' ? '#FFB6C6' : 
+                        circle.id === 'time20' ? '#E6E6FA' : '#ADD8E6'
+                    } 0)`;
+                    circle.style.background = gradient;
+                    circle.style.color = 'black';
+                } else {
+                    circle.style.background = 'white';
+                    circle.style.color = '#999';
+                }
+            });
+        }
+
+        setInterval(updateCircles, 1000);
+        updateCircles();
+    </script>
+</body>
+</html>
