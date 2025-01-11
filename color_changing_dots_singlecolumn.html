@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Color Changing Circle</title>
+  <style>
+    .circle {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: #E7E9EB;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      margin: 10px auto;
+    }
+    .container {
+    	display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+  </style>
+</head>
+<body>
+	<div class="container" id="circleContainer"></div>
+    
+    <script>
+    	const container = document.getElementById('circleContainer');
+        
+        // Define an array of colors
+		const colors = ['#E7E9EB', '#FDECAF', '#F3DAC1', '#FDC9BD', '#FDC8DE', '#D3A9D3', '#A9DBD4', '#D3ECAC'];
+        
+        function createCircle() {
+        
+        	const circle = document.createElement('div');
+            circle.className = 'circle';
+            
+            let currentColorIndex = 0;
+            
+            circle.addEventListener('click', () => {
+            	currentColorIndex = (currentColorIndex + 1) % colors.length;
+                circle.style.backgroundColor = colors[currentColorIndex];
+            });
+            
+            return circle;
+		}
+        
+        const numCircles = 8;
+        for (let i = 0; i < numCircles; i++) {
+        	const newCircle = createCircle();
+            container.appendChild(newCircle);
+        }
+	</script>
+</body>
+</html>
