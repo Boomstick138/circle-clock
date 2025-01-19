@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.button {
+  background-color: #f7f0e7; 
+  border: none;
+  border-radius: 100%;
+  color: #494949;
+  width: 80px;
+  height: 80px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  
+}
+
+.button3 {background-color: #f89aaa;} 
+.button4 {background-color: #f9728c;} 
+.button5 {background-color: #494949;} 
+</style>
+</head>
+<body>
+
+<button class="button" onclick="copyToClipboard(this, '#f7f0e7', '#494949')"></button>
+<button class="button button3" onclick="copyToClipboard(this, '#f89aaa', '#494949')"></button>
+<button class="button button4" onclick="copyToClipboard(this, '#f9728c', '#494949')"></button>
+<button class="button button5" onclick="copyToClipboard(this, '#494949', '#2f272d')"></button>
+
+<script>
+function copyToClipboard(button, text, activeColor) {
+    navigator.clipboard.writeText(text).catch(function(err) {
+        console.error("Failed to copy: ", err);
+    });
+    
+    let originalColor = button.style.backgroundColor;
+    button.style.backgroundColor = activeColor;
+
+    
+    setTimeout(() => {
+        button.style.backgroundColor = originalColor;
+    }, 300); // Farbe bleibt 300ms sichtbar
+}
+</script>
+
+</body>
+</html>
