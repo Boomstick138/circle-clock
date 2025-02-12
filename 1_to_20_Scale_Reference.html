@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>1:20 Maßstab – Direkt Verbunden</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #fff;
+      color: #000;
+      margin: 5px;
+      text-align: center;
+      border-style: solid;
+      border-width: 2px 2px;
+    }
+    /* Gemeinsamer Container ohne extra Padding */
+    .combined-scale-container {
+      width: 500px;
+      margin: 30px auto;
+      position: relative;
+      height: 50px; /* 30px für die Modell-Skala und 30px für die Real-Skala */
+    }
+    /* Obere Modell-Skala (0–5 cm) */
+    .model-scale {
+      position: absolute;
+      top:0;
+      left: 0;
+      width: 100%;
+      height: 20px;
+    }
+    .model-line {
+      border-bottom: 2px solid #000;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+    }
+    .model-label {
+      position: absolute;
+      bottom: 50%; /* direkt oberhalb der Linie */
+      font-size: 14px;
+      width: 20px;
+      margin-left: -10px;
+      text-align: center;
+    }
+    .model-labels {
+      position: absolute;
+      bottom: 40%; /* direkt oberhalb der Linie */
+      font-size: 10px;
+      width: 40px;
+      margin-left: -20px;
+      text-align: center;
+    }
+    /* Untere Real-Skala (0–100 cm) */
+    .real-scale {
+      position: absolute;
+      top: 30px; /* unmittelbar nach der Modell-Skala */
+      left: 0;
+      width: 100%;
+      height: 30px;
+    }
+    .real-line {
+      border-top: 2px solid #000;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+    }
+    /* Tick-Markierungen und Beschriftungen für die Real-Skala */
+    .tick {
+      position: absolute;
+      top: -20px; /* relativ zum .real-scale-Container */
+      width: 1px;
+      height: 28px;
+      background: #000;
+    }
+    .ticks {
+      position: absolute;
+      top: -16px; /* relativ zum .real-scale-Container */
+      width: 1px;
+      height: 22px;
+      background: #000;
+    }
+    .tick-label {
+      position: absolute;
+      top: 10px;
+      font-size: 14px;
+      width: 20px;
+      margin-left: -10px;
+      text-align: center;
+    }
+    .tick-labels {
+      position: absolute;
+      top: 8px;
+      font-size: 10px;
+      width: 20px;
+      margin-left: -10px;
+      text-align: center;
+    }
+    /* Highlight: 1 Modell-cm entspricht 20 cm Real (bei 500px Breite = 100 cm) */
+    .highlight {
+      position: absolute;
+      top: -10px;
+      left: 0;
+      height: 10px;
+      width: 20%;
+      background: #000;
+    }
+  </style>
+</head>
+<body>
+  <h2 style="border-style: solid; border-width: 1px 1px; width: 80%; ; margin: 20px auto">Maßstab 1cm : 20cm</h2>
+  <p>für 20 gemessene cm wird 1 cm gezeichnet</p>
+  <p>Zeichenmaßstab</p>
+  <div class="combined-scale-container">
+    <!-- Obere Modell-Skala -->
+    <div class="model-scale">
+      <div class="model-line"></div>
+      <div class="model-label" style="left: 0%;">cm 0</div>
+      <div class="model-labels" style="left: 10%;">0,5</div>
+      <div class="model-label" style="left: 20%;">cm 1</div>
+      <div class="model-label" style="left: 40%;">cm 2</div>
+      <div class="model-label" style="left: 60%;">cm 3</div>
+      <div class="model-label" style="left: 80%;">cm 4</div>
+      <div class="model-label" style="left: 100%;">cm 5</div>
+    </div>
+    <!-- Untere Real-Skala -->
+    <div class="real-scale">
+      <div class="real-line"></div>
+      <div class="highlight"></div>
+      <!-- Lange Tick-Marks -->
+      <div class="tick" style="left: 0%;"></div>
+      <div class="tick" style="left: 20%;"></div>
+      <div class="tick" style="left: 40%;"></div>
+      <div class="tick" style="left: 60%;"></div>
+      <div class="tick" style="left: 80%;"></div>
+      <div class="tick" style="left: 100%;"></div>
+      <!-- Kurze Tick-Marks -->
+      <div class="ticks" style="left: 10%;"></div>
+      <div class="ticks" style="left: 30%;"></div>
+      <div class="ticks" style="left: 50%;"></div>
+      <div class="ticks" style="left: 70%;"></div>
+      <div class="ticks" style="left: 90%;"></div>
+      <!-- Tick-Beschriftungen -->
+      <div class="tick-label" style="left: 0%;">0 cm</div>
+      <div class="tick-labels" style="left: 10%;">10</div>
+      <div class="tick-label" style="left: 20%;">20 cm</div>
+      <div class="tick-labels" style="left: 30%;">30</div>
+      <div class="tick-label" style="left: 40%;">40 cm</div>
+      <div class="tick-labels" style="left: 50%;">50</div>
+      <div class="tick-label" style="left: 60%;">60 cm</div>
+      <div class="tick-labels" style="left: 70%;">70</div>
+      <div class="tick-label" style="left: 80%;">80 cm</div>
+      <div class="tick-labels" style="left: 90%;">90</div>
+      <div class="tick-label" style="left: 100%;">100 cm</div>
+    </div>
+  </div>
+  <p>Echter Maßstab</p>
+</body>
+</html>
